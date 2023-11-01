@@ -13,7 +13,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    # my_product_id = db.relationship("Product", back_populates = "my_product_user_id", cascade = "all, delete-orphan")
+    my_product_id = db.relationship("Product", back_populates = "my_product_user_id", cascade = "all, delete-orphan")
+    my_product_id = db.relationship("Product", back_populates = "my_product_user_id", cascade = "all, delete-orphan")
+    my_review_id = db.relationship("Review", back_populates = "my_review_user_id", cascade = "all, delete-orphan")
 
     @property
     def password(self):

@@ -11,8 +11,8 @@ class Review(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable = False)
     review = db.Column(db.String(1000), nullable = False)
     created_at = db.Column(db.Date, nullable = False)
-    # my_review_user_id = db.relationship("User", back_populates = "my_review_id")
-    # my_review_product_id = db.relationship("Product", back_populates = "my_product_review_id")
+    my_review_user_id = db.relationship("User", back_populates = "my_review_id")
+    my_review_product_id = db.relationship("Product", back_populates = "my_product_review_id")
 
     def to_dict(self):
         return {
@@ -21,5 +21,5 @@ class Review(db.Model):
             "productId": self.product_id,
             "review": self.review,
             "createdAt": self.created_at,
-            "users": self.my_review_user_id.to_dict()
+            "users": [review.to_dict() for review in self.my_review_user_id]
         }

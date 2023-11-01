@@ -1,17 +1,17 @@
-from faker import Faker
+# from faker import Faker
 from ..models import User, Product, Review, db, environment, SCHEMA
 from random import randint
 from datetime import date
 from sqlalchemy.sql import text
 
-fake = Faker()
+# fake = Faker()
 
 
 def seed_reviews():
     new_Review1 = Review(
         user_id=1,
         product_id=1,
-        review=fake.text(),
+        review='fake review',
         created_at=date.today()
     )
 
